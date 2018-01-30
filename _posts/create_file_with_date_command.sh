@@ -1,6 +1,6 @@
 title=$1
 date=`date +%F`
-file_name=$date"-"$title".markdown"
+file_name=$date"-"$title".md"
 # echo $file_name
 # touch $date-$article_name.markdown
 touch $file_name
@@ -20,12 +20,26 @@ else
     # echo $category
 fi
 
+if [ ! -n "$3" ];then
+	image=""
+else
+image="image:
+  feature:
+  credit:
+  creditlink:
+"
+fi
+
 datetime=`date +%Y-%m-%d\ %H:%M:%S`
 
-template="---\n
-layout: post\n
-title:  "$title"\n
-date:   $datetime\n
-categories: $category\n---
+boundary="---"
+
+template="
+layout: post
+title:  "$title"
+description: ""
+modified:   $datetime
+tags: [$category]
 "
-echo $template > $file_name
+template=$boundary$template$image$boundary
+echo "$template" > $file_name
