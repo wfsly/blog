@@ -11,8 +11,9 @@
 与其自己写语句实现，不如用标准库里有的，这样也能让代码变的更优雅点，更Pythonic点。
 
 
-## os
+## os.path
 
+### os.path.split
 例如，现在有一个文件路径名`/home/jax/workspace/1234_567_8.jpg`, 现在想提取文件名。
 我们可能想到的就是分割字符串, 以'/'为分隔符，分割这个字符串，然后取出来最后一个元素
 
@@ -26,6 +27,11 @@ Out: 1234_567_8.jpg
 但是标准库`os`提供了具有类似功能的方法，[os.path.split(path)][os.path.split], 函数会将path分割成一个
 元组(head, tail)，元组内只有两部分，tail是路径中最后一部分，即最后一个'/'以后的内容，
 而head则表示'/'之前的所有内容
+```
+split(p)
+    Split a pathname.  Returns tuple "(head, tail)" where "tail" is
+    everything after the final slash.  Either part may be empty.
+```
 
 ```
 In : import os
@@ -33,6 +39,29 @@ In : name = '/home/jax/workspace/1234_567_8.jpg'
 In : print os.path.split(name)
 Out: ('/home/jax/workspace', '1234_567_8.jpg')
 In : file_name = os.path.split(name)[1]
+```
+
+### os.path.splitext
+获取到文件名以后，可以进一步利用标准函数os.path.splitext将文件名提取出名字和扩展名
+
+```
+splitext(p)
+    Split the extension from a pathname.
+
+    Extension is everything from the last dot to the end, ignoring
+    leading dots.  Returns "(root, ext)"; ext may be empty.
+```
+```
+In : res = os.path.splitext(name)
+In : print res
+Out: ('1234_567_8', '.jpg')
+```
+
+### os.path.abspath
+
+```
+abspath(path)
+    Return an absolute path.
 ```
 
 [os.path.split]: https://docs.python.org/2.7/library/os.path.html?highlight=os%20path%20splitext#os.path.split
