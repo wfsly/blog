@@ -15,6 +15,8 @@ tags: [kubernetes]
 
 # master部署kubernetes
 
+kubeadm init工作流程可参考[init工作流程][init_workflow]
+
 ## kubeadm init 初始化kubernetes集群过程中遇到的问题
 执行kubeadm init时需要跟--pod-network-cidr参数来为Pod设置所使用的网络, --kubernetes-version=v1.11.0指定安装的kubernetes
 版本不是v1.11,是v1.11.0不然会报无此版本的错误
@@ -136,4 +138,5 @@ f6-11e8-b02a-fa163edf1c9d)" failed: rpc error: code = Unknown desc = failed pull
  #### 解决了docker镜像下载问题后，node节点状态是NotReady得以解决。
 
 [docker proxy]: https://blog.yanzhe.tk/2017/11/09/docker-set-proxy/
+[init_workflow]: http://docs.kubernetes.org.cn/829.html#kubeadm_init
 

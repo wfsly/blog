@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  为kubernetes集群搭建外部ETCD集群
+title:  kubernetes集群搭建外部ETCD集群
 description: 
 modified:   2018-07-31 10:18:16
 tags: [kubernetes]
