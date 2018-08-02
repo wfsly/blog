@@ -40,7 +40,7 @@ docker load < filename.tar
 
 依然可以将yaml内容复制到本地文件再执行，同上。
 
-如果没有执行此步骤，nginx-ingress-controller会一直报下面的错误`services "ingress-nginx" not found`
+如果没有执行此步骤，nginx-ingress-controller会一直报下面的错误`services "ingress-nginx" not found`, 参考自[issue][issue]
 ```
 W0716 12:41:52.724243       5 queue.go:130] requeuing &ObjectMeta{Name:sync status,GenerateName:,Namespace:,SelfLink:,UID:,ResourceVersion:,Generation:0,CreationTimestamp:0001-01-01 00:00:00 +0000 UTC,DeletionTimestamp:<nil>,DeletionGracePeriodSeconds:nil,Labels:map[string]string{},Annotations:map[string]string{},OwnerReferences:[],Finalizers:[],ClusterName:,Initializers:nil,}, err services "ingress-nginx" not found
 
@@ -94,3 +94,5 @@ kube-system     coredns-78fcdf6894-64f7t                 1/1   Running          
 
 [reference]: https://stackoverflow.com/questions/40259178/how-to-restart-kubernetes-pods
 [uninstall]: https://github.com/nginxinc/kubernetes-ingress/blob/master/docs/installation.md
+[node_port]: https://kubernetes.github.io/ingress-nginx/deploy/#baremetal
+[issue]:https://github.com/kubernetes-incubator/kubespray/issues/3005
