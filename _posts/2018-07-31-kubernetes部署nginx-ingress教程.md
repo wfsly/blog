@@ -26,13 +26,40 @@ docker save image_name > filename.tar
 docker load < filename.tar
 ```
 
-
+### 1. 部署ingress-nginx-controller
+安装步骤参考[官方文档][deploy]
 `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml`
 
 物理机上无法联外网，需要实现将url中的yaml内容复制到到文件内，然后使用本地文件。
 `kubectl apply -f ingress_deploy.yaml`
 
+### 2. 创建name为ingress-nginx的service
+由于使用的Service类型是NodeType，所以千万别忘了执行[baremetal][baremetal_nodeport]这一步去创建name为ingress-nginx的service
+
+`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/baremetal/service-nodeport.yaml`
+
+依然可以将yaml内容复制到本地文件再执行，同上。
+
+如果没有执行此步骤，nginx-ingress-controller会一直报下面的错误`services "ingress-nginx" not found`
+```
+W0716 12:41:52.724243       5 queue.go:130] requeuing &ObjectMeta{Name:sync status,GenerateName:,Namespace:,SelfLink:,UID:,ResourceVersion:,Generation:0,CreationTimestamp:0001-01-01 00:00:00 +0000 UTC,DeletionTimestamp:<nil>,DeletionGracePeriodSeconds:nil,Labels:map[string]string{},Annotations:map[string]string{},OwnerReferences:[],Finalizers:[],ClusterName:,Initializers:nil,}, err services "ingress-nginx" not found
+
+```
+
 安装完成后，执行`kubectl get pods --all-namespaces`可以看到新建的default-http-backend和ngress-ingress-controller两个pod
+
+## 删除nginx-ingress-controller
+
+`kubectl delete namespace ingress-nginx`
+
+
+## 查看nginx-ingress-controller的日志
+
+由于nginx-ingress-controller的pod命名空间是ingress-nginx,所以执行`kubectl get pods(默认查看default命名空间下的pods)`是
+看不到nginx-ingress的pod的，需要加上`--all-namespaces`参数, `kubectl get pods --all-namespaces`
+
+之后通过执行`kubectl logs nginx_ingress_pod_name --namespace=ingress-nginx`加上namespace参数就可以查看到log
+
 
 
 
@@ -66,3 +93,4 @@ kube-system     coredns-78fcdf6894-64f7t                 1/1   Running          
 ```
 
 [reference]: https://stackoverflow.com/questions/40259178/how-to-restart-kubernetes-pods
+[uninstall]: https://github.com/nginxinc/kubernetes-ingress/blob/master/docs/installation.md
