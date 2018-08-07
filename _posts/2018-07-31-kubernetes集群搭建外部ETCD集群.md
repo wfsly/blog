@@ -88,6 +88,8 @@ ExecStart=/bin/bash -c "GOMAXPROCS=$(nproc) /usr/bin/etcd --data-dir=\"${ETCD_DA
 4. 执行`systemctl daemon-reload && systemctl start etcd`
 
 #### Notice: 所有主机上的ETCD都启动以后，集群才能正常建立。
+#### Notice: 由于使用外部ETCD集群，执行`kubeadm reset`删除集群环境时，不会清空etcd数据，所以需要去etcd手动删除
+`etcdctl del "" --prefix`
 
 [build]: https://github.com/coreos/etcd/blob/master/Documentation/dl_build.md
 [cluster]: https://github.com/coreos/etcd/blob/master/Documentation/op-guide/clustering.md

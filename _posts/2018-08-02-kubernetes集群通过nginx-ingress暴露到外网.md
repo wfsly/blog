@@ -19,6 +19,8 @@ ingress-nginx Service作为唯一的入口。
 但是我们还需要将这个唯一的入口暴露到公网中，所以要想通过域名访问到集群中的各种应用服务，还需要在集群外部搭建一个nginx
 将所有的域名请求转发到ingress-nginx这个Service暴露出来的`NodeIP:NodePort`上，这样才能完成外网到Pod应用的访问。
 
+#### 记住，是转发到ingress-nginx这个service暴露出来的端口上。
+
 
 ## 外部nginx配置
 
