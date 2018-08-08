@@ -47,6 +47,14 @@
 - `ctrl + s`: 锁定屏幕输出，在`tail -f`查看日志的时候很实用
 - `ctrl + q`: 解除ctrl s的屏幕输出锁定
 
+## 终端
+
+- `ctrl + alt + t`: 打开终端
+- `ctrl + shift + t`: 打开新标签页
+- `ctrl + shift + w`: 关闭新标签页
+- `ctrl + shift + PgUp`: 标签页左移
+- `ctrl + shift + PgDn`: 标签页右移
+
 
 # 命令
 
