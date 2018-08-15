@@ -73,4 +73,6 @@
 2. 替换时新旧内容中含有特殊字符(例如/或#等),可以使用其他符号(:,#~等)把各部分内容隔开
 `sed -i 's:/usr/bin:/lib/bin:' file`
 `sed -i 's,/usr/bin,/lib/bin,' file`
+3. 用新的内容new_content替换掉有关键词key的行
+`sed -i '/key/c new_content' file`
 
