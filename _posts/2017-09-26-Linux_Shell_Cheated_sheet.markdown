@@ -76,3 +76,7 @@
 3. 用新的内容new_content替换掉有关键词key的行
 `sed -i '/key/c new_content' file`
 
+
+## 图片
+- `eog image_file`: 打开图片
+- `mogrify -format new_type file`: 转换图片格式为新的格式,例如`mogrify -format png lock_screen.jpg`, 会生成lock_screen.png的图片
