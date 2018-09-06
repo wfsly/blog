@@ -80,3 +80,6 @@
 ## 图片
 - `eog image_file`: 打开图片
 - `mogrify -format new_type file`: 转换图片格式为新的格式,例如`mogrify -format png lock_screen.jpg`, 会生成lock_screen.png的图片
+
+## 截屏
+- `import file.png`: 截图, 执行命令用鼠标选中所要截取的部分
