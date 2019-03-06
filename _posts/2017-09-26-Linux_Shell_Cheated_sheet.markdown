@@ -83,3 +83,11 @@
 
 ## 截屏
 - `import file.png`: 截图, 执行命令用鼠标选中所要截取的部分
+
+# 组合命令
+
+## 找到程序, 排除掉含有某些关键字的结果， 获取pid并kill掉进程
+`ps -ef | grep '\./mate-server' | grep -v 'grep' | awk '{print $2}' | xargs kill`
+
+## 将命令行输出复制到剪切板
+`pwd | xsel -b`
