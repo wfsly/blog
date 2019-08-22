@@ -91,3 +91,6 @@
 
 ## 将命令行输出复制到剪切板
 `pwd | xsel -b`
+
+## hostA和hostB不同，但是hostC可以同时连接hostA和hostB,利用hostC做中转，从A向B复制文件
+`ssh root@hostA "cat /path/file" | ssh root@hostB "cat -> /path/file"`
