@@ -6,6 +6,8 @@ modified:   2019-08-28 10:37:42
 tags: [golang]
 ---
 
+参考自[切片陷阱][slice]
+
 ```golang
 package main
 import "fmt"
@@ -70,3 +72,5 @@ func main() {
 
 }
 ```
+
+[slice]: https://mp.weixin.qq.com/s/VT8mzbq3qIuqBRd_twih7w
