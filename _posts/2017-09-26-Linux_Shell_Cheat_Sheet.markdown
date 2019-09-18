@@ -1,6 +1,6 @@
 ---
  layout: post
- title: Linux_Shell_Cheated_sheet
+ title: Linux_Shell_Cheat_Sheet
  date: 2017-09-26 07:02:52
  categories: linux
  tags: [linux]
