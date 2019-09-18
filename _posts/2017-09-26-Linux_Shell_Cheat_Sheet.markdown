@@ -76,6 +76,10 @@
 3. 用新的内容new_content替换掉有关键词key的行
 `sed -i '/key/c new_content' file`
 
+## curl
+1. 请求url并将返回的json数据json格式化
+`curl -s http://127.0.0.1:8011/mate-server?Action=DescribeModules -d '{}' | python -m json.tool`
+
 
 ## 图片
 - `eog image_file`: 打开图片
