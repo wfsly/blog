@@ -55,7 +55,7 @@ Host name2
 
 ## 4.add ssh public key into github
 
-将对应的公钥内容添加到github账号里, 执行此命令复制公钥内容`cat .ssh/id_rsa_git_jd.pub | xclip -selection clipboard`
+将对应的公钥内容添加到github账号里, 执行此命令复制公钥内容`cat .ssh/id_rsa_git.pub | xclip -selection clipboard`
 
 ## 5.testing
 单个账号将ssh秘钥添加到github账号后，执行`ssh -T git@github.com`就会输出连通提示信息

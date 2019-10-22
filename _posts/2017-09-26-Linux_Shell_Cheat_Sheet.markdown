@@ -78,11 +78,27 @@
 `sed -i 's,/usr/bin,/lib/bin,' file`
 3. 用新的内容new_content替换掉有关键词key的行
 `sed -i '/key/c new_content' file`
+4. 输出匹配正则的行
+
+## awk
+1. 输出文本的所有行
+`awk '{print $0}' file`
+
+2. 输出文本第一列
+`awk '{print $1}' file`
+
+3. 输出文本第最后列
+`awk '{print $NF}' file`
 
 ## curl
 1. 请求url并将返回的json数据json格式化
 `curl -s http://127.0.0.1:8011/mate-server?Action=DescribeModules -d '{}' | python -m json.tool`
 
+## yum
+1. yum下载rpm和依赖
+`yumdownloader install --resolve --downloadonly --downloaddir=/home/wangfushu ntp `
+2. yum安装本地包`
+`yum localinstall a.rpm`
 
 ## 图片
 - `eog image_file`: 打开图片
@@ -101,3 +117,4 @@
 
 ## hostA和hostB不同，但是hostC可以同时连接hostA和hostB,利用hostC做中转，从A向B复制文件
 `ssh root@hostA "cat /path/file" | ssh root@hostB "cat -> /path/file"`
+
