@@ -55,6 +55,11 @@
 - `ctrl + shift + PgUp`: 标签页左移
 - `ctrl + shift + PgDn`: 标签页右移
 
+## tmux
+- `prefix + d`: 分离会话
+- `prefix + s`: 列出所有会话
+- `prefix + $`: 重命名当前会话
+
 
 # 命令
 
@@ -99,6 +104,24 @@
 `yumdownloader install --resolve --downloadonly --downloaddir=/home/wangfushu ntp `
 2. yum安装本地包`
 `yum localinstall a.rpm`
+
+## tmux
+1. 新建一个name会话
+`tmux new -s name`
+2. 分离会话, 退出会话界面，进程不退出
+`prefix + d` 或命令行执行`tmux detach`
+3. 查看当前有哪些会话
+`tmux ls`
+4. 接入会话
+`tmux attach -t <会话编号>/<会话name>`
+5. 杀死会话
+`tmux kill-session -t <会话编号>/<会话name>`
+6. 切换会话
+`tmux switch -t <会话编号>/<会话name>`
+7. 重命名会话
+`tmux rename-session -t 0 new-name`
+8. 快捷键
+
 
 ## 图片
 - `eog image_file`: 打开图片
