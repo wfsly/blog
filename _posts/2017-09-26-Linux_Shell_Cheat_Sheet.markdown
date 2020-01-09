@@ -75,6 +75,10 @@
 - `nc -l 8000 < filename`: 在当前主机上开一个服务器传输filename文件
 - `nc ip 8000 > filename`: 在另外一个内网可通的主机上接收上面传输的文件
 
+## grep
+- `grep -nr 'key' ./`: 在当前目录的文件检索关键字key,并输出行号和内容
+- `ls | grep -E 'key1|key2'`: 在ls的输出中检索关键字key1或key2的内容, -E支持正则
+
 
 ## sed
 1. 替换
