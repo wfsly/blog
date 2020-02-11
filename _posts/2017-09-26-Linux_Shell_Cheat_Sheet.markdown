@@ -110,6 +110,11 @@
 2. yum安装本地包`
 `yum localinstall a.rpm`
 
+## rpm
+1. 查看机器上安装的所有rpm包
+`rpm -qa`
+`rpm -qa | grep tmux`
+
 ## tmux
 1. 新建一个name会话
 `tmux new -s name`
