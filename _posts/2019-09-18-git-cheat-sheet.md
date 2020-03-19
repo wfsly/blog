@@ -29,6 +29,8 @@ git 指令收集
 ## git push
 1. 强制push覆盖远程分支
 `git push --force`
+2. 删除远程分支
+`git push origin --delete <branch>`
 
 ## git show
 3. 查看commit的内容
