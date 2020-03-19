@@ -11,6 +11,8 @@ tags: [kubernetes]
 [1 Pod](#1-Pod)
 [2 Pod基本概念](#2-Pod基本概念)
 [3 Pod使用进阶](#3-Pod使用进阶)
+[4 Pod健康检查](#4-Pod健康检查)
+[5 Pod预设置](#5-Pod预设置)
 
 <!-- /TOC -->
 
@@ -150,3 +152,37 @@ Service Account对象的作用就是Kubernetes系统内置的一种“服务账�
 这种Service Account对象的授权信息和文件，就是存储在它所绑定的特殊的Secret对象中的。这个特殊的Secret对象叫做ServiceAccountToken.任何运行在Kubernetes集群上的应用，都必须使用serviceAccountToken里保存的授权信息，也就是Token，才可以合法的访问API Server.
 
 kubernete已提供了一个默认”服务账户“
+
+# Pod健康检查
+
+若为Pod定义Liveness Probe，健康检查探针。Kubelet则会根据这个Probe的返回值决定这个Pod的状态，而不是直接以容器是否运行为判断依据
+
+## Liveness Probe参数
+- initialDelaySeconds 定义容器启动多少秒后才开始执行probe探测
+- periodSeconds probe每隔多少秒执行一次
+
+## restartPolicy
+
+如果Probe探测返回失败值，kubelet会认为这个Pod的状态为Unhealthy, 就会在当前节点重新创建容器，在kubernetes中没有stop的语义。这是Pod的恢复机制，restartPolicy, 默认值是Always.
+
+这也是用单Pod和一个Pod的Deployment部署容器的区别，Deployment有恢复机制，单Pod容器故障后无法自动恢复
+
+restartPolicy值有:
+- Always 在任何情况下，只要容器不在运行状态，就自动重启容器
+- OnFailure 只在容器异常时才重启容器
+- Never 任何时候都不重启容器
+
+在实际使用时，要根据应用运行的特性，合理设置这三种恢复策略。 例如，如果关心应用容器退出后的上下文，如日志，文件和目录，就需要将其设置为Never，否则容器一旦被重启，这些内容就会丢失。
+
+- 只要Pod的restartPolicy指定的策略允许重启异常的容器（比如：Always），那么这个Pod就会保持Running状态，并进行容器重启。否则，Pod就会进入Failed状态。
+- 对于包含多个容器的Pod，只有它里面所有的容器都进入异常状态后，Pod才会进入Failed状态。在此之前Pod都是Running状态，此时Pod的Ready字段会显示正常容器的个数
+
+## Liveness Probe的执行方式
+liveness 可以通过命令行命令，发起HTTP或TCP请求的方式
+
+# Pod预设置
+Pod的字段太多，不可能全记住。kubernetes v1.11中提供了PodPreset(Pod预设置)的功能。这种新特性使用前需要先检查是否在启动项中启用了。
+
+应用场景： 开发人员只定义基本的pod yaml内容，运维人员针对开发人员的yaml需要额外的填写部署相关的字段。
+
+运维人员通过编写PodPreset对象的yaml，并制定selector对指定的Pod生效。PodPreset是实现批量化，自动化修改的工具对象
